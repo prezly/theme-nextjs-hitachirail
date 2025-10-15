@@ -1,0 +1,116 @@
+# Cursor Agent Rules for Hitachi Rail Bea Fork
+
+## Core Principles
+
+- **Preserve Bea conventions**: Always prefer additive code under `src/custom/` or `custom/`. 
+- **Composition over modification**: Use React composition patterns to extend functionality rather than modifying existing components.
+- **Maintainability**: Keep code deployagnostic and avoid provider-specific SDK lock-in.
+- **Use src/theme-settings.ts**: There are multiple options and variables already coded in the theme-settings.ts, we should prioritise using those flags before building new custom implementations. So for fonts, color settings, layout options we start with analysing if these are options supported within the theme before building those. 
+
+## Styling
+
+- **No Tailwind**: This project uses **CSS/SCSS + CSS variables** only.
+- **SCSS variables**: Maintain existing SCSS variable conventions in `src/styles/variables/`.
+- **Global styles**: Import order matters - modern-normalize → tokens → globals → component styles.
+- **Responsive**: Use existing mixins from `src/styles/mixins/` for breakpoints.
+
+## TypeScript
+
+- **Strict mode**: Keep TS strict enabled. No `any` unless justified with inline comments.
+- **Type safety**: Import types from `@prezly/theme-kit-nextjs` and `@prezly/sdk`.
+- **Adapters**: Any new data shapes must go through adapters in `src/adapters/`. Never mutate Bea SDK calls directly.
+
+## Data Fetching
+
+- **Use Bea patterns**: All data fetching must use Prezly SDK via theme-kit adapters.
+- **Server components**: Prefer React Server Components for data-heavy pages.
+- **Caching**: Respect Next.js caching strategies; use appropriate `revalidate` values.
+
+## Developing
+- **Page Order**: We develop and make changes from top to bottom, only if the header is finished we start with the story layout
+-**Implementation Order**: We work on the homepage first, then the story page, then the category page and search  pages.
+
+
+## Components
+
+- **Semantic HTML**: Use proper semantic elements (header, nav, main, article, section, footer).
+- **Accessibility**: 
+  - WCAG 2.2 AA compliance required
+  - Keyboard navigation for all interactive elements
+  - Focus visible styles required
+  - Minimum contrast ratio 4.5:1 for normal text, 3:1 for large text
+  - Use ARIA attributes appropriately
+- **Images**: Always provide `width`, `height`, or `aspect-ratio` to prevent CLS.
+- **Client components**: Minimize client-side JS. Only use `'use client'` when necessary (interactivity, hooks, browser APIs).
+
+## Performance
+
+- **Lean bundles**: Avoid unnecessary dependencies. Tree-shake and code-split where beneficial.
+- **Images**: Use Next.js Image component with proper `sizes` attribute. Set `priority` for LCP images.
+- **Fonts**: Use `font-display: swap` for custom fonts. Preload critical fonts.
+- **Critical path**: Keep initial JavaScript payload minimal.
+
+## File Organization
+
+- **Custom components**: Place in `src/custom/components/`
+- **Custom modules**: Place in `src/custom/modules/`
+- **Shared utilities**: Place in `src/utils/`
+- **Types**: Co-locate with components or use `types.ts` files
+- **Styles**: Component styles should be `.module.scss` files
+
+## Commits & PRs
+
+- **Conventional commits**: Use conventional commit format (feat:, fix:, chore:, docs:)
+- **Small PRs**: Keep PRs focused and reviewable (< 500 lines when possible)
+- **Testing**: All PRs must pass typecheck, lint, unit tests, and E2E smoke tests
+- **Screenshots**: Include before/after screenshots for UI changes
+
+## Hitachi Rail Customizations
+
+- **Figma designs**: Use figma MCP to check the design for the homepage, category page and Story page https://www.figma.com/design/kV9JfITPVeuojaTzR6lVYR/Custom-Theme--Hitachi-Rail?node-id=3601-5755&t=e7rSOn1HQVmcUN7N-0
+- **Design system**: Reference Hitachi Rail brand guidelines at https://www.hitachirail.com/
+
+## Do Not
+
+- ❌ Add Tailwind CSS or other utility-first CSS frameworks
+- ❌ Commit API tokens, secrets, or sensitive data
+- ❌ Modify core Bea files without documenting breaking changes
+- ❌ Use inline styles except for dynamic theme colors
+- ❌ Add unnecessary dependencies
+- ❌ Skip TypeScript strict checks
+- ❌ Bypass accessibility requirements
+- ❌ Create files without proper extensions (.tsx for React, .ts for utilities)
+- ❌ Use default exports for components (prefer named exports)
+
+## Helpful Commands
+
+```bash
+# Development
+pnpm dev              # Start dev server
+pnpm build            # Production build
+pnpm start            # Start production server
+
+# Quality checks
+pnpm typecheck        # TypeScript validation
+pnpm lint             # Biome linting
+pnpm format:fix       # Auto-format code
+pnpm check            # Run all checks
+
+# Testing
+pnpm test             # Run unit tests
+pnpm test:ui          # Vitest UI
+pnpm e2e              # Run E2E tests
+pnpm e2e:ui           # Playwright UI
+pnpm a11y             # Accessibility checks
+```
+
+## References
+
+- **Upstream**: https://github.com/prezly/theme-nextjs-bea
+- **Prezly SDK**: https://github.com/prezly/javascript-sdk
+- **Theme Kit**: https://github.com/prezly/theme-kit-nextjs
+- **Hitachi Rail**: https://www.hitachirail.com/
+
+
+
+

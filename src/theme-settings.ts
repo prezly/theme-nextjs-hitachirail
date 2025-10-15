@@ -1,6 +1,7 @@
 export enum Font {
     ALEGREYA = 'alegreya',
     ALEGREYA_SANS = 'alegreya_sans',
+    HITACHI_SANS = 'hitachi_sans',
     INTER = 'inter',
     MERRIWEATHER = 'merriweather',
     MULISH = 'mulish',
@@ -64,16 +65,16 @@ export type StoryActions = Pick<
 >;
 
 export const DEFAULT_THEME_SETTINGS: ThemeSettings = {
-    accent_color: '#3b82f6',
+    accent_color: '#CC0022',
     background_color: '#ffffff',
     categories_layout: 'dropdown',
-    font: Font.INTER,
-    footer_background_color: '#111827',
-    footer_text_color: '#ffffff',
+    font: Font.HITACHI_SANS,
+    footer_background_color: '#F4F4F4',
+    footer_text_color: '#4D4D4D',
     full_width_featured_story: false,
-    header_background_color: '#ffffff',
+    header_background_color: '#F4F4F4',
     header_image_placement: 'below',
-    header_link_color: '#4b5563',
+    header_link_color: '#4D4D4D',
     layout: 'grid',
     logo_size: 'medium',
     main_logo: null,
@@ -103,6 +104,7 @@ export const DEFAULT_THEME_SETTINGS: ThemeSettings = {
 export const FONT_FAMILY = {
     [Font.ALEGREYA]: "'Alegreya', serif",
     [Font.ALEGREYA_SANS]: "'Alegreya Sans', sans-serif",
+    [Font.HITACHI_SANS]: "'Hitachi Sans', sans-serif",
     [Font.INTER]: 'Inter, sans-serif',
     [Font.MERRIWEATHER]: 'Merriweather, serif',
     [Font.MULISH]: 'Mulish, sans-serif',
@@ -130,6 +132,8 @@ export function getGoogleFontName(font: Font): string {
             return 'Alegreya';
         case Font.ALEGREYA_SANS:
             return 'Alegreya Sans';
+        case Font.HITACHI_SANS:
+            return ''; // Custom font, not from Google Fonts
         case Font.MERRIWEATHER:
             return 'Merriweather';
         case Font.MULISH:

@@ -19,29 +19,39 @@ export function BrandingSettings({ settings }: Props) {
         ...withoutUndefined(settings),
     };
 
-    const primaryGoogleFontName = getGoogleFontName(compiledSettings.font).replace(' ', '+');
+    const primaryGoogleFontName = getGoogleFontName(compiledSettings.font);
     const relatedFont = getRelatedFont(compiledSettings.font);
 
-    let families = [];
-    if (relatedFont) {
-        const relatedGoogleFontName = getGoogleFontName(relatedFont).replace(' ', '+');
+    // Skip Google Fonts loading for custom fonts (when getGoogleFontName returns empty string)
+    const isCustomFont = !primaryGoogleFontName;
 
-        families = [
-            `${primaryGoogleFontName}:wght@600`,
-            `${relatedGoogleFontName}:wght@400;500;600;700;900`,
-        ];
-    } else {
-        families = [`${primaryGoogleFontName}:wght@400;500;600;700;900`];
+    let families: string[] = [];
+    if (!isCustomFont) {
+        const primaryFontUrlName = primaryGoogleFontName.replace(' ', '+');
+        
+        if (relatedFont) {
+            const relatedGoogleFontName = getGoogleFontName(relatedFont);
+            const relatedFontUrlName = relatedGoogleFontName.replace(' ', '+');
+
+            families = [
+                `${primaryFontUrlName}:wght@600`,
+                `${relatedFontUrlName}:wght@400;500;600;700;900`,
+            ];
+        } else {
+            families = [`${primaryFontUrlName}:wght@400;500;600;700;900`];
+        }
     }
 
     return (
         <>
-            <link
-                href={`https://fonts.googleapis.com/css2?display=swap&${families
-                    .map((family) => `family=${family}`)
-                    .join('&')}`}
-                rel="stylesheet"
-            />
+            {!isCustomFont && (
+                <link
+                    href={`https://fonts.googleapis.com/css2?display=swap&${families
+                        .map((family) => `family=${family}`)
+                        .join('&')}`}
+                    rel="stylesheet"
+                />
+            )}
 
             <InjectCssVariables variables={getCssVariables(compiledSettings)} />
         </>
