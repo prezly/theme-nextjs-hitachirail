@@ -130,13 +130,16 @@ export function SubscribeForm({ newsroom }: Props) {
                         for={translations.subscription.disclaimer}
                         values={{
                             subscribe: (
-                                <FormattedMessage
-                                    locale={localeCode}
-                                    for={translations.actions.subscribe}
-                                />
+                                <span key="subscribe">
+                                    <FormattedMessage
+                                        locale={localeCode}
+                                        for={translations.actions.subscribe}
+                                    />
+                                </span>
                             ),
                             privacyPolicyLink: (
                                 <Link
+                                    key="privacyPolicyLink"
                                     href={{ routeName: 'privacyPolicy', params: { localeCode } }}
                                     target="_blank"
                                     rel="noreferrer"
