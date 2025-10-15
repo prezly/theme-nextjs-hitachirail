@@ -13,7 +13,7 @@
 }
 
 @mixin tablet-only {
-    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+    @media screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop - 1px) {
         @content;
     }
 }
@@ -24,8 +24,20 @@
     }
 }
 
+@mixin desktop-large-up {
+    @media screen and (min-width: $breakpoint-desktop-large) {
+        @content;
+    }
+}
+
+@mixin desktop-xl-up {
+    @media screen and (min-width: $breakpoint-desktop-xl) {
+        @content;
+    }
+}
+
 @mixin not-desktop {
-    @media screen and (max-width: $breakpoint-desktop) {
+    @media screen and (max-width: $breakpoint-desktop - 1px) {
         @content;
     }
 }

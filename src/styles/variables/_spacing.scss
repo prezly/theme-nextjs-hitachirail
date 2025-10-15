@@ -12,11 +12,16 @@ $spacing-10: 8rem; // 128px
 $spacing-11: 16rem; // 256px
 $spacing-12: 32rem; // 512px
 
+// Hitachi Rail grid spacing - matching their blog layout
 $grid-gutter-mobile: 1.5rem; // 24px
-$grid-spacing-mobile: 1.5rem; // 24px
-$grid-gutter-tablet: 2rem; // 32px
-$grid-spacing-tablet: 2rem; // 32px
-$grid-gutter-desktop: 2.5rem; // 40px
-$grid-spacing-desktop: 2.5rem; // 40px
+$grid-spacing-mobile: 1rem; // 16px (Hitachi Rail mobile padding)
+$grid-gutter-tablet: 1.5rem; // 24px row gap
+$grid-spacing-tablet: 2.5rem; // 40px (Hitachi Rail tablet padding)
+$grid-gutter-desktop: 2rem; // 32px
+$grid-spacing-desktop: 2.5rem; // 40px (Hitachi Rail desktop padding)
+$grid-spacing-desktop-large: 3rem; // 48px (Hitachi Rail large desktop)
+$grid-spacing-desktop-xl: 4rem; // 64px (Hitachi Rail XL desktop)
 
-$grid-container-max-width: 1280px; // 1120px + 80px spacing on the sides
+// Hitachi Rail container max-widths
+$grid-container-max-width: 1520px; // Large desktop (1366px+)
+$grid-container-max-width-xl: 1568px; // Extra large (1920px+)
