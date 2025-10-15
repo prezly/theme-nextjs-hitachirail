@@ -1,7 +1,7 @@
-// Hitachi Sans font family
+// Hitachi Sans font family - using WOFF for better web performance
 @font-face {
     font-family: 'Hitachi Sans';
-    src: url('/fonts/HitachiSans-Regular.ttf') format('truetype');
+    src: url('/fonts/hitachisans-regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'Hitachi Sans';
-    src: url('/fonts/HitachiSans-Bold.ttf') format('truetype');
+    src: url('/fonts/hitachisans-bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
