@@ -1,0 +1,69 @@
+// Hitachi Rail icon fonts
+@font-face {
+    font-family: 'iconfont';
+    src: url('/fonts/iconfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Material-Design-Iconic-Font';
+    src: url('/fonts/Material-Design-Iconic-Font-hitachi.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+// Base icon class
+.icon {
+    display: inline-block;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    flex-shrink: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Material Design Iconic Font base - exactly as hitachirail.com
+.zmdi {
+    display: inline-block;
+    font-family: 'Material-Design-Iconic-Font';
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: inherit;
+    line-height: 1;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Icon codes from Material-Design-Iconic-Font.woff2 (user confirmed)
+.zmdi-globe-bold::before {
+    content: '\f416'; // Unicode F416
+}
+
+.zmdi-envelope::before {
+    content: '\f412'; // Unicode F412
+}
+
+// Hitachi search icon
+.font-ico-search {
+    display: inline-block;
+    font-family: 'iconfont';
+    font-style: normal;
+    font-weight: normal;
+    font-size: inherit;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-ico-search::before {
+    content: '\f107'; // Unicode F107
+}
+

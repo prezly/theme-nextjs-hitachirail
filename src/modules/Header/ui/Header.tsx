@@ -26,6 +26,8 @@ import { useBroadcastedPageTypeCheck } from '@/modules/Broadcast';
 import type { ThemeSettings } from '@/theme-settings';
 import type { SearchSettings } from '@/types';
 
+import { HeaderTop } from '@/custom/components/HeaderTop';
+
 import { Categories } from './Categories';
 import { Logo } from './Logo';
 
@@ -181,6 +183,7 @@ export function Header({
 
     return (
         <>
+            <HeaderTop localeCode={localeCode} onSearchClick={toggleSearchWidget} />
             <header ref={headerRef} className={styles.container}>
                 <div className="container">
                     <nav className={styles.header}>

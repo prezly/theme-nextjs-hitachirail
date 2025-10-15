@@ -24,7 +24,7 @@
             "@/adapters/server": ["./src/adapters/server"],
             "@/components/*": ["./src/components/*"],
             "@/constants": ["./src/constants.ts"],
-            "@/custom/*": ["./custom/*"],
+            "@/custom/*": ["./src/custom/*"],
             "@/hooks": ["./src/hooks/"],
             "@/icons": ["./src/icons/"],
             "@/modules/*": ["./src/modules/*"],
