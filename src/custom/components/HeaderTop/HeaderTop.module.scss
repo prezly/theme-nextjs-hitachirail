@@ -2,9 +2,10 @@
 .headerTop {
     background-color: #ffffff;
     border-bottom: 1px solid #d9d9d9;
-    height: 52px;
+    min-height: 52px; // Use min-height instead of fixed height
     display: flex;
     align-items: center;
+    position: relative; // Ensure ::after elements are positioned correctly
 }
 
 .content {
@@ -12,6 +13,8 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    min-width: 0; // Allow flex items to shrink if needed
+    width: 100%; // Ensure full width usage
 }
 
 // Logo styling matching Hitachi Rail
@@ -20,6 +23,8 @@
     align-items: center;
     text-decoration: none;
     color: #000000; // Force black color for logo
+    flex-shrink: 0; // Prevent logo link from shrinking
+    min-width: 0; // Allow content to determine width
 
     &:hover {
         opacity: 0.8;
@@ -30,11 +35,12 @@
     display: block;
     height: 18px;
     width: auto;
-    max-width: 106px;
+    // Remove max-width to prevent cutting off
+    flex-shrink: 0; // Prevent logo from shrinking
 
     @include mobile-only {
-        max-width: 90px;
         height: 16px;
+        // No max-width constraint on mobile
     }
 
     // SVG styling - explicitly black
@@ -58,22 +64,37 @@
 .navButton {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px; // Exact gap from hitachirail.com
     padding: 19px 26px;
     height: 100%;
-    font-size: 15.75px; // Exact font size from hitachirail.com
+    position: relative;
+    font-size: 14px; // Exact font size from hitachirail.com (14.1094px)
     font-family: 'Hitachi Sans', sans-serif;
     font-weight: 400;
+    line-height: 1.4; // Matches hitachirail.com's 19.75px line-height (19.7531px)
     color: #4d4d4d;
     text-decoration: none;
     border-left: 1px solid #d9d9d9;
-    border-bottom: 2px solid transparent; // Transparent border for smooth transition
-    transition: border-bottom 0.2s ease;
+    transition: all;
     background: none;
     cursor: pointer;
 
-    &:hover {
-        border-bottom: 2px solid #cc0022; // Hitachi red bottom border on hover
+    // Red underline effect on hover (matching hitachirail.com exactly)
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px; // Extend 1px below to connect with second header
+        width: 100%;
+        height: 2px;
+        background-color: #cc0022; // Hitachi red
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        z-index: 1; // Ensure it's above the container border
+    }
+
+    &:hover::after {
+        opacity: 1;
     }
 
     &:active {
@@ -82,20 +103,13 @@
 
     &:last-child {
         border-right: 1px solid #d9d9d9;
+        border-top: none; // Remove top border
+        border-bottom: none; // Remove bottom border
     }
 
     span {
-        line-height: 24px;
         white-space: nowrap;
     }
-}
-
-// SVG icons styling
-.navIcon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    color: #4d4d4d;
 }
 
 // Responsive adjustments
